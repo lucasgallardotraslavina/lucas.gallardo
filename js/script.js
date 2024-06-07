@@ -1,8 +1,8 @@
-import {} from "./promesa.js"
+import { RegistrarComponentes } from "./promesa.js"
 
 window.addEventListener("load",()=>{
-    document.getElementById("").addEventListener("click",AQUI);//RECORDAR PONER LA FUNCION QUE SE 
-    document.getElementById("").addEventListener("click",AQUI);//RECORDAR PONER LA FUNCION QUE SE
+    document.getElementById("btnIngresar").addEventListener("click",Registrar); 
+    //document.getElementById("").addEventListener("click",AQUI);//RECORDAR PONER LA FUNCION QUE SE
 })
 
 
@@ -19,16 +19,16 @@ const Registrar = ()=>{
 
     if(document.getElementById("Ram1").checked){
         ERam = 4;
-        alert("Eligio el modulo 4")
+        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }else if(document.getElementById("Ram2").checked){
         ERam = 8;
-        alert("Eligio el modulo 4")
-    }else if(document.getElementById("Rma3").checked){
+        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
+    }else if(document.getElementById("Ram3").checked){
         ERam = 16;
-        alert("Eligio el modulo 4")
+        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }else if(document.getElementById("Ram4").checked){
         ERam = 32
-        alert("Eligio el modulo 4")
+        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }
 
 //=========================================================
@@ -36,33 +36,34 @@ const Registrar = ()=>{
 
     if(document.getElementById("Grafica1").checked){
         EGrafica = "GT";
-        alert("Eligio la Grafica GT!")
+        alert("Eligio el modelo de Grafica: "+EGrafica)
     }else if(document.getElementById("Grafica2").checked){
         EGrafica = "GTX";
-        alert("Eligio la Grafica GTX!")
+        alert("Eligio el modelo de Grafica: "+EGrafica)
     }else if(document.getElementById("Grafica3").checked){
         EGrafica = "RTX";
-        alert("Eligio la Grafica RTX!")
+        alert("Eligio el modelo de Grafica: "+EGrafica)
     }
 //=========================================================
     let EAlmacenamiento
 
     if(document.getElementById("Almacenamiento1").checked){
         EAlmacenamiento = 250;
-        alert("Eligio el Almacenamiento con la capacidad:"+EAlmacenamiento)
+        alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }else if(document.getElementById("Almacenamiento2").checked){
         EAlmacenamiento = 500;
-        alert("Eligio el Almacenamiento con la capacidad:"+EAlmacenamiento)
+        alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }else if(document.getElementById("Almacenamiento3").checked){
         EAlmacenamiento = 1000;
-        alert("Eligio el Almacenamiento con la capacidad:"+EAlmacenamiento)
+        alert("Eligio el Almacenamiento con la capacidad:"+EAlmacenamiento+"GB")
     }else if(document.getElementById("Almacenamiento4").checked){
         EAlmacenamiento = 2000;
-        alert("Eligio el Almacenamiento con la capacidad:"+EAlmacenamiento)
+        alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }
 //=========================================================
 
     let EVentiladores = document.getElementById("Ventiladores");
+    
 
 
 
@@ -88,6 +89,11 @@ const Registrar = ()=>{
         Ventiladores:VVentiladores
     }
     
-    
+    RegistrarComponentes(objeto).then (()=>{
+        alert("Registrado con exito")
+    }).catch((r)=>{
+        alert("algo ocurrio")
+        alert(r)
+    })
 
 }
