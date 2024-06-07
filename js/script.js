@@ -60,7 +60,7 @@ const Registrar = ()=>{
     let VAlmacenamienti = EAlmacenamiento
     let VVentiladores = EVentiladores
 
-    let objeto = {
+    const objeto = {
         Codigo:VCodigo,
         Placa:VPlaca,
         Procesador:VProcesador,
@@ -71,6 +71,6 @@ const Registrar = ()=>{
         Almacenamiento:VAlmacenamienti,
         Ventiladores:VVentiladores
     }
-
+    document.getElementById("").innerHTML = objeto;
 
 }
