@@ -9,7 +9,7 @@ const Registrar = ()=>{
     let EFuente = document.getElementById("Fuente");
     let EGabinete = document.getElementById("Gabinete");
 
-//========================================================
+//=========================================================
     let ERam
 
     if(document.getElementById("Ram1").checked){
