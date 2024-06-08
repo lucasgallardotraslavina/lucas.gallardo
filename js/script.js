@@ -1,11 +1,15 @@
-import { RegistrarComponentes } from "./promesa.js"
+import { ObtenerComponentes, RegistrarComponentes } from "./promesa.js"
 
 window.addEventListener("load",()=>{
     document.getElementById("btnIngresar").addEventListener("click",Registrar); 
     //document.getElementById("").addEventListener("click",AQUI);//RECORDAR PONER LA FUNCION QUE SE
+    CargarDatos();
 })
 
 
+//================================================================
+//========================FUNCION REGISTRAR=======================
+//================================================================
 
 const Registrar = ()=>{
     let ECodigo = document.getElementById("Codigo");
@@ -90,10 +94,38 @@ const Registrar = ()=>{
     }
     
     RegistrarComponentes(objeto).then (()=>{
-        alert("Registrado con exito")
+        alert("Registrado con exito");
     }).catch((r)=>{
-        alert("algo ocurrio")
-        alert(r)
-    })
-
+        alert("algo ocurrio");
+        alert(r);
+    });
 }
+//================================================================
+//=============TERMINO DE LA FUNCION REGISTRAR====================
+//================================================================
+
+//================================================================
+//=====================FUNCION CARGAR DATOS=======================
+//================================================================
+const CargarDatos = ()=>{
+    ObtenerComponentes().then((componentes)=>{
+        let estructura = "";
+        componentes.forEach(componentes => {
+            estructura += "<tr>";
+            estructura += "<td>" + componentes.Codigo + "</td>";
+            estructura += "<td>" + componentes.Placa + "</td>";
+            estructura += "<td>" + componentes.Procesador + "</td>";
+            estructura += "<td>" + componentes.Fuente + "</td>";
+            estructura += "<td>" + componentes.Gabinete + "</td>";
+            estructura += "<td>" + componentes.Ram + "</td>";
+            estructura += "<td>" + componentes.Grafica + "</td>";
+            estructura += "<td>" + componentes.Almacenamiento + "</td>";
+            estructura += "<td>" + componentes.Ventiladores + "</td>";
+            estructura += "</tr>";
+        });
+        document.getElementById("TablaDatos").innerHTML = estructura;
+    })      
+}
+//================================================================
+//=============TERMINO DE LAFUNCION CARGAR DATOS==================
+//================================================================
