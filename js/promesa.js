@@ -15,3 +15,8 @@ export const ObtenerComponentes = async()=>{
     });
     return listado
 }
+
+export const ActualizarComponentes = async(objeto, id)=>{
+    const ref = doc(db,"componentes", id);
+    await updateDoc(ref,objeto)
+}
