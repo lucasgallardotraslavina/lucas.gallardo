@@ -1,8 +1,8 @@
-import { ObtenerComponentes, RegistrarComponentes } from "./promesa.js"
+import { ObtenerComponentes, RegistrarComponentes, ActualizarComponentes } from "./promesa.js"
 
 window.addEventListener("load",()=>{
-    document.getElementById("btnIngresar").addEventListener("click",Registrar); 
-    //document.getElementById("").addEventListener("click",AQUI);//RECORDAR PONER LA FUNCION QUE SE
+    document.getElementById("btnIngresar").addEventListener("click", Registrar); 
+    document.getElementById("btnActualizar").addEventListener("click", Actualizar);
     CargarDatos();
 })
 
@@ -121,10 +121,44 @@ const CargarDatos = ()=>{
             estructura += "<td>" + componentes.Grafica + "</td>";
             estructura += "<td>" + componentes.Almacenamiento + "</td>";
             estructura += "<td>" + componentes.Ventiladores + "</td>";
+            estructura += "<td> <button id =" + componentes.id + ">Actualizar</td></button>";
             estructura += "</tr>";
         });
         document.getElementById("TablaDatos").innerHTML = estructura;
-    })      
+        componentes.forEach((componentes)=>{
+
+            let botonUPD = document.getElementById(componentes.id);
+
+            botonUPD.addEventListener("click",()=>{
+                let ECodigo = document.getElementById("Codigo");
+                let EPlaca = document.getElementById("Placa");
+                let EProcesador = document.getElementById("Procesador");
+                let EFuente = document.getElementById("Fuente");
+                let EGabinete = document.getElementById("Gabinete");
+
+                let ERam = document.getElementById("Ram");
+                let EGrafica = document.getElementById("Grafica");
+                let EAlmacenamiento = document.getElementById("Almacenamiento");
+
+                let Eventiladores = document.getElementById("Ventiladores")
+
+                ECodigo.value = componentes.Codigo;
+                EPlaca.value = componentes.Placa;
+                EProcesador.value = componentes.Procesador;
+                EFuente.value = componentes.Fuente;
+                EGabinete.value = componentes.Gabinete;
+
+                ERam = componentes.Ram;
+                EGrafica = componentes.Grafica;
+                EAlmacenamiento = componentes.Almacenamiento;
+
+                Eventiladores.value = componentes.Ventiladores;
+
+                document.getElementById("btnActualizar").value = componentes.id;
+            })
+        })
+    });
+
 }
 //================================================================
 //=============TERMINO DE LAFUNCION CARGAR DATOS==================
@@ -212,6 +246,8 @@ const Actualizar = ()=>{
         Almacenamiento:VAlmacenamienti,
         Ventiladores:VVentiladores
     }
+    let id = document.getElementById("btnActualizar").value;
+    
     ActualizarComponentes(objeto, id).then(()=>{
         alert("se actualizao")
         CargarDatos();
