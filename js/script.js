@@ -4,7 +4,7 @@ window.addEventListener("load",()=>{
     document.getElementById("btnIngresar").addEventListener("click", Registrar); 
     document.getElementById("btnActualizar").addEventListener("click", Actualizar);
     CargarDatos();
-    document.getElementById("Contraste").addEventListener("click",Contraste)
+    document.getElementById("Contraste").addEventListener("click",Contraste);
 })
 
 //================================================================
@@ -277,7 +277,6 @@ const Actualizar = ()=>{
     let id = document.getElementById("btnActualizar").value;
     
     ActualizarComponentes(objeto, id).then(()=>{
-        alert("se actualizao")
         CargarDatos();
     });
 }

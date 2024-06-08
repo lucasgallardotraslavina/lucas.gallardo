@@ -20,9 +20,14 @@ export const ObtenerComponentes = async()=>{
 
 // Función para actualizar componentes en Firebase
 export const ActualizarComponentes = async(objeto, id)=>{
+    try{
     const ref = doc(db,"componentes", id);
     await updateDoc(ref,objeto)
-}
+    alert("se actualizao")
+    }catch(err){
+        alert("debe rellenar todos los campos")
+    }
+};
 
 // Función para eliminar componentes de Firebase
 export const EliminarComponentes = async(id)=>{
