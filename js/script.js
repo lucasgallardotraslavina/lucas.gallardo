@@ -5,6 +5,7 @@ window.addEventListener("load",()=>{
     document.getElementById("btnActualizar").addEventListener("click", Actualizar);
     CargarDatos();
     document.getElementById("Contraste").addEventListener("click",Contraste)
+    document.getElementById("btnFuente").addEventListener("click",fuente)
 })
 
 //================================================================
@@ -264,4 +265,43 @@ const Actualizar = ()=>{
 // Alterna el modo oscuro en la página
 const Contraste = ()=>{
     document.body.classList.toggle("dark-mode");
+}
+var fuente = () => {
+    //En esta función se esta haciendo que al momento de apretar el boton fuente 
+    //cambie el tamaño de fuente a lo que se haya aplicado la clase en el HTML
+    let btn = document.getElementById('btnFuente')
+    
+    if(btn.value == '0'){
+        let elements = document.getElementsByClassName("small-letras")
+        //Se guarda el largo del elemento en una variable
+        const largo = elements.length;
+        for (let i = 0; i < largo; i++){
+            const element = elements[0]
+            //Se reemplaza del elemento la clase small-letras por medium-letras
+            element.classList.replace('small-letras','medium-letras')
+        }
+        btn.value = '1';
+    }
+    
+    else if(btn.value == "1"){
+        let elements = document.getElementsByClassName("medium-letras");
+        const largo = elements.length;
+        for (let i = 0; i < largo; i++){
+            const element = elements[0]
+            //Se reemplaza del elemento la clase medium-letras por large-letras
+            element.classList.replace('medium-letras','large-letras')
+        }
+        btn.value = "2";
+    }
+    
+    else if(btn.value == "2"){
+        let elements = document.getElementsByClassName("large-letras")
+        const largo = elements.length;
+        for (let i = 0; i < largo; i++){
+            const element = elements[0]
+            //Se reemplaza del elemento la clase large-letras por small-letras
+            element.classList.replace('large-letras','small-letras')
+        }
+        btn.value = "0"
+    }
 }
