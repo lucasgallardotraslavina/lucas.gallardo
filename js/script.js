@@ -4,7 +4,7 @@ window.addEventListener("load",()=>{
     document.getElementById("btnIngresar").addEventListener("click", Registrar); 
     document.getElementById("btnActualizar").addEventListener("click", Actualizar);
     CargarDatos();
-    document.getElementById("Contraste").addEventListener("click",Contraste);
+    document.getElementById("Contraste").addEventListener("click",Contraste)
 })
 
 //================================================================
@@ -25,16 +25,12 @@ const Registrar = ()=>{
 // Verifica qué opción de RAM está seleccionada
     if(document.getElementById("Ram1").checked){
         ERam = 4;
-        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }else if(document.getElementById("Ram2").checked){
         ERam = 8;
-        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }else if(document.getElementById("Ram3").checked){
         ERam = 16;
-        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }else if(document.getElementById("Ram4").checked){
         ERam = 32;
-        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }
 
 //===================RADIO=================================
@@ -43,13 +39,10 @@ const Registrar = ()=>{
 // Verifica qué opción de gráfica está seleccionada
     if(document.getElementById("Grafica1").checked){
         EGrafica = "GT";
-        alert("Eligio el modelo de Grafica: "+EGrafica)
     }else if(document.getElementById("Grafica2").checked){
         EGrafica = "GTX";
-        alert("Eligio el modelo de Grafica: "+EGrafica)
     }else if(document.getElementById("Grafica3").checked){
         EGrafica = "RTX";
-        alert("Eligio el modelo de Grafica: "+EGrafica)
     }
 
 //===================CHECK BOX=============================
@@ -58,16 +51,12 @@ const Registrar = ()=>{
 // Verifica qué opción de almacenamiento está seleccionada
     if(document.getElementById("Almacenamiento1").checked){
         EAlmacenamiento = 250;
-        alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }else if(document.getElementById("Almacenamiento2").checked){
         EAlmacenamiento = 500;
-        alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }else if(document.getElementById("Almacenamiento3").checked){
         EAlmacenamiento = 1000;
-        alert("Eligio el Almacenamiento con la capacidad:"+EAlmacenamiento+"GB")
     }else if(document.getElementById("Almacenamiento4").checked){
         EAlmacenamiento = 2000;
-        alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }
 
 //=========================================================
@@ -98,7 +87,6 @@ const Registrar = ()=>{
     }
 // Llama a la función RegistrarComponentes de la ppromesa
     RegistrarComponentes(objeto).then (()=>{
-        alert("Registrado con exito");
 // Vuelve a cargar los datos después de registrar
         CargarDatos();
     }).catch((r)=>{
@@ -172,7 +160,6 @@ const CargarDatos = ()=>{
             botonDEL.addEventListener("click",()=>{
                 if(confirm("seguro de eliminar:"+componentes.Codigo)){
                     EliminarComponentes(componentes.id).then(()=>{
-                        alert("se elimino los componentes con el codigo:"+componentes.Codigo);
 // Vuelve a cargar los datos después de eliminar
                         CargarDatos();
                     })
@@ -204,16 +191,12 @@ const Actualizar = ()=>{
 
     if(document.getElementById("Ram1").checked){
         ERam = 4;
-        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }else if(document.getElementById("Ram2").checked){
         ERam = 8;
-        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }else if(document.getElementById("Ram3").checked){
         ERam = 16;
-        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }else if(document.getElementById("Ram4").checked){
         ERam = 32
-        alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }
 
 //===================RADIO=================================
@@ -222,13 +205,10 @@ const Actualizar = ()=>{
 
     if(document.getElementById("Grafica1").checked){
         EGrafica = "GT";
-        alert("Eligio el modelo de Grafica: "+EGrafica)
     }else if(document.getElementById("Grafica2").checked){
         EGrafica = "GTX";
-        alert("Eligio el modelo de Grafica: "+EGrafica)
     }else if(document.getElementById("Grafica3").checked){
         EGrafica = "RTX";
-        alert("Eligio el modelo de Grafica: "+EGrafica)
     }
 
 //===================check box=============================
@@ -237,16 +217,12 @@ const Actualizar = ()=>{
 
     if(document.getElementById("Almacenamiento1").checked){
         EAlmacenamiento = 250;
-        alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }else if(document.getElementById("Almacenamiento2").checked){
         EAlmacenamiento = 500;
-        alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }else if(document.getElementById("Almacenamiento3").checked){
         EAlmacenamiento = 1000;
-        alert("Eligio el Almacenamiento con la capacidad:"+EAlmacenamiento+"GB")
     }else if(document.getElementById("Almacenamiento4").checked){
         EAlmacenamiento = 2000;
-        alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }
 
 //=========================================================

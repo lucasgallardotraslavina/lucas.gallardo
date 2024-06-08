@@ -3,9 +3,14 @@ import {db} from "./firebase.js"
 
 // Función para registrar componentes en Firebase
 export const RegistrarComponentes = async(componentes)=>{
+    try{
     const docRef = await addDoc(collection(db,"componentes"),componentes)
+    alert("Registrado con exito");
     return docRef;
-}
+    }catch(err){
+    alert("debe rellenar todos los campos")
+    };
+};
 
 // Función para obtener los componentes desde Firebase
 export const ObtenerComponentes = async()=>{
@@ -16,7 +21,7 @@ export const ObtenerComponentes = async()=>{
         listado.push({...doc.data(),id:doc.id})
     });
     return listado
-}
+};
 
 // Función para actualizar componentes en Firebase
 export const ActualizarComponentes = async(objeto, id)=>{
@@ -33,4 +38,5 @@ export const ActualizarComponentes = async(objeto, id)=>{
 export const EliminarComponentes = async(id)=>{
     const ref = doc(db,"componentes", id);
     await deleteDoc(ref);
+    alert("se elimio correctamente")
 }

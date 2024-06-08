@@ -1,4 +1,4 @@
-/* body{
+body{
     background-color: beige;
 }
 label{
@@ -23,12 +23,12 @@ label{
 }
 
 table{
-    border: 2px solid violet;
     display: block;
-    margin: 425px;
-    margin-top: -820px;
-    margin-bottom: 0px;
-    margin-right: 35px;
+    /* margin: 425px; */
+    margin-top: -840px;
+    margin-bottom: 10px;
+    margin-left: 600px;
+    margin-right: 440px;
 
 }
 th{
@@ -40,9 +40,9 @@ td{
 .btnContraste{
     display: block;
     margin: 1px;
-    margin-top: 1px;
+    margin-top: 70px;
     margin-bottom: 1px;
-    margin-left: 1px;
+    margin-left: 800px;
     margin-right: 1px;
 }
 input{
@@ -55,10 +55,10 @@ p{
 }
 .formulario{
     display: block;
-    border: 2px solid black;
+    border: 2px solid beige;
     margin: 0px;
     margin-left: 10px;
-    margin-right: 900px;
+    margin-right: 1310px;
 }
 
 .buttonI{
@@ -74,4 +74,4 @@ p{
     margin-bottom: 1px;
     margin-left: 1px;
     margin-right: 0px;
-} */
+}
