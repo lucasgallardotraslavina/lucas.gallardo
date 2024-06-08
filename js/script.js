@@ -1,4 +1,4 @@
-import { ObtenerComponentes, RegistrarComponentes, ActualizarComponentes } from "./promesa.js"
+import {ObtenerComponentes, RegistrarComponentes, ActualizarComponentes, EliminarComponentes} from "./promesa.js"
 
 window.addEventListener("load",()=>{
     document.getElementById("btnIngresar").addEventListener("click", Registrar); 
@@ -19,7 +19,7 @@ const Registrar = ()=>{
     let EGabinete = document.getElementById("Gabinete");
 
 //=========================================================
-    let ERam
+    let ERam;
 
     if(document.getElementById("Ram1").checked){
         ERam = 4;
@@ -31,12 +31,12 @@ const Registrar = ()=>{
         ERam = 16;
         alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }else if(document.getElementById("Ram4").checked){
-        ERam = 32
+        ERam = 32;
         alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }
 
 //=========================================================
-    let EGrafica
+    let EGrafica;
 
     if(document.getElementById("Grafica1").checked){
         EGrafica = "GT";
@@ -49,7 +49,7 @@ const Registrar = ()=>{
         alert("Eligio el modelo de Grafica: "+EGrafica)
     }
 //=========================================================
-    let EAlmacenamiento
+    let EAlmacenamiento;
 
     if(document.getElementById("Almacenamiento1").checked){
         EAlmacenamiento = 250;
@@ -122,6 +122,7 @@ const CargarDatos = ()=>{
             estructura += "<td>" + componentes.Almacenamiento + "</td>";
             estructura += "<td>" + componentes.Ventiladores + "</td>";
             estructura += "<td> <button id =" + componentes.id + ">Actualizar</td></button>";
+            estructura += "<td> <button id = 'DEL" + componentes.id + "'>Eliminar</td></button>";
             estructura += "</tr>";
         });
         document.getElementById("TablaDatos").innerHTML = estructura;
@@ -142,6 +143,7 @@ const CargarDatos = ()=>{
 
                 let Eventiladores = document.getElementById("Ventiladores")
 
+
                 ECodigo.value = componentes.Codigo;
                 EPlaca.value = componentes.Placa;
                 EProcesador.value = componentes.Procesador;
@@ -155,6 +157,15 @@ const CargarDatos = ()=>{
                 Eventiladores.value = componentes.Ventiladores;
 
                 document.getElementById("btnActualizar").value = componentes.id;
+            });
+            let botonDEL = document.getElementById("DEL"+componentes.id);
+            botonDEL.addEventListener("click",()=>{
+                if(confirm("seguro de eliminar:"+componentes.Codigo)){
+                    EliminarComponentes(componentes.id).then(()=>{
+                        alert("se elimino los componentes con el codigo:"+componentes.Codigo);
+                        CargarDatos();
+                    })
+                }
             })
         })
     });

@@ -20,3 +20,8 @@ export const ActualizarComponentes = async(objeto, id)=>{
     const ref = doc(db,"componentes", id);
     await updateDoc(ref,objeto)
 }
+
+export const EliminarComponentes = async(id)=>{
+    const ref = doc(db,"componentes", id);
+    await deleteDoc(ref);
+}
