@@ -1,3 +1,4 @@
+// Crendenciales para el accedo a firebase
 export const firebaseConfig = {
     apiKey: "AIzaSyAZPyRm9CNt2vzxAcLJNPVTkkwopBjVjbo",
     authDomain: "eva3-6c83b.firebaseapp.com",

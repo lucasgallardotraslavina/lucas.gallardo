@@ -1,5 +1,5 @@
 import {ObtenerComponentes, RegistrarComponentes, ActualizarComponentes, EliminarComponentes} from "./promesa.js"
-
+//Identificara los los ID que en este caso solo son botones y le agregara un evento relaciona con una funcio
 window.addEventListener("load",()=>{
     document.getElementById("btnIngresar").addEventListener("click", Registrar); 
     document.getElementById("btnActualizar").addEventListener("click", Actualizar);
@@ -12,6 +12,7 @@ window.addEventListener("load",()=>{
 //========================FUNCION REGISTRAR=======================
 //================================================================
 
+// Funcion encargada de registrar los valores en fire base
 const Registrar = ()=>{
 // Obtiene los valores de los elementos
     let ECodigo = document.getElementById("Codigo");
@@ -90,6 +91,7 @@ const Registrar = ()=>{
     RegistrarComponentes(objeto).then (()=>{
 // Vuelve a cargar los datos después de registrar
         CargarDatos();
+// En caso de que haya algun erro se mostrara el forma de alerta en el navegador 
     }).catch((r)=>{
         alert("algo ocurrio");
         alert(r);
@@ -104,10 +106,12 @@ const Registrar = ()=>{
 //=====================FUNCION CARGAR DATOS=======================
 //================================================================
 
-const CargarDatos = ()=>{
-    ObtenerComponentes().then((componentes)=>{
+
+// Funcion encargada de tomar los datos e introducirlos en una tabla ademas de actualizar y eliminar los datos de dicha tabla
+const CargarDatos = () => {
+    ObtenerComponentes().then((componentes) => {
         let estructura = "";
-// Crea una tabla con los compoennetes
+// Crea una tabla con los componentes
         componentes.forEach(componentes => {
             estructura += "<tr>";
             estructura += "<td>" + componentes.Codigo + "</td>";
@@ -119,48 +123,57 @@ const CargarDatos = ()=>{
             estructura += "<td>" + componentes.Grafica + "</td>";
             estructura += "<td>" + componentes.Almacenamiento + "</td>";
             estructura += "<td>" + componentes.Ventiladores + "</td>";
-            estructura += "<td> <button id =" + componentes.id + ">Actualizar</td></button>";
-            estructura += "<td> <button id = 'DEL" + componentes.id + "'>Eliminar</td></button>";
+            estructura += "<td> <button id =" + componentes.id + ">Actualizar</button></td>";
+            estructura += "<td> <button id = 'DEL" + componentes.id + "'>Eliminar</button></td>";
             estructura += "</tr>";
         });
         document.getElementById("TablaDatos").innerHTML = estructura;
-        componentes.forEach((componentes)=>{
+        componentes.forEach((componentes) => {
 // Asigna eventos a los botones de actualizar y eliminar
             let botonUPD = document.getElementById(componentes.id);
 
-            botonUPD.addEventListener("click",()=>{
+            botonUPD.addEventListener("click", () => {
                 let ECodigo = document.getElementById("Codigo");
                 let EPlaca = document.getElementById("Placa");
                 let EProcesador = document.getElementById("Procesador");
                 let EFuente = document.getElementById("Fuente");
                 let EGabinete = document.getElementById("Gabinete");
 
-                let ERam = document.getElementById("Ram");
-
-                let EGrafica = document.getElementById("Grafica")
-                let EAlmacenamiento = document.getElementById("Almacenamiento");
-
-                let Eventiladores = document.getElementById("Ventiladores")
-
- // Asigna los valores de los componentes seleccionados a los campos del formulario
+// Asigna los valores de los componentes seleccionados a los campos del formulario
                 ECodigo.value = componentes.Codigo;
                 EPlaca.value = componentes.Placa;
                 EProcesador.value = componentes.Procesador;
                 EFuente.value = componentes.Fuente;
                 EGabinete.value = componentes.Gabinete;
 
-                ERam = componentes.Ram;
-                EGrafica = componentes.Grafica;
-                EAlmacenamiento = componentes.Almacenamiento;
+ // Actualiza los botones de radio
+                document.getElementById("Ram1").checked = componentes.Ram == 4;
+                document.getElementById("Ram2").checked = componentes.Ram == 8;
+                document.getElementById("Ram3").checked = componentes.Ram == 16;
+                document.getElementById("Ram4").checked = componentes.Ram == 32;
 
-                Eventiladores.value = componentes.Ventiladores;
+                document.getElementById("Grafica1").checked = componentes.Grafica == "GT";
+                document.getElementById("Grafica2").checked = componentes.Grafica == "GTX";
+                document.getElementById("Grafica3").checked = componentes.Grafica == "RTX";
+
+// Actualiza las casillas de verificación
+                document.getElementById("Almacenamiento1").checked = componentes.Almacenamiento == 250;
+                document.getElementById("Almacenamiento2").checked = componentes.Almacenamiento == 500;
+                document.getElementById("Almacenamiento3").checked = componentes.Almacenamiento == 1000;
+                document.getElementById("Almacenamiento4").checked = componentes.Almacenamiento == 2000;
+
+                let EVentiladores = document.getElementById("Ventiladores");
+                EVentiladores.value = componentes.Ventiladores;
 
                 document.getElementById("btnActualizar").value = componentes.id;
             });
-            let botonDEL = document.getElementById("DEL"+componentes.id);
-            botonDEL.addEventListener("click",()=>{
-                if(confirm("seguro de eliminar:"+componentes.Codigo)){
-                    EliminarComponentes(componentes.id).then(()=>{
+
+// Asigna eventos al boton eliminar
+            let botonDEL = document.getElementById("DEL" + componentes.id);
+            botonDEL.addEventListener("click", () => {
+                if (confirm("seguro de eliminar:" + componentes.Codigo)) {
+// Llama a la función eliminarcomponente de la promesa
+                    EliminarComponentes(componentes.id).then(() => {
 // Vuelve a cargar los datos después de eliminar
                         CargarDatos();
                     })
@@ -170,6 +183,7 @@ const CargarDatos = ()=>{
     });
 }
 
+
 //================================================================
 //=============TERMINO DE LAFUNCION CARGAR DATOS==================
 //================================================================
@@ -177,6 +191,8 @@ const CargarDatos = ()=>{
 //================================================================
 //=================Funcion ACTUALIZAR=============================
 //================================================================
+// Funcion encargada de que los datos se rescriban en la tabla
+// "muy parecido a la funcion Registrar"
 
 const Actualizar = ()=>{
     let ECodigo = document.getElementById("Codigo");
@@ -252,8 +268,9 @@ const Actualizar = ()=>{
         Ventiladores:VVentiladores
     }
     let id = document.getElementById("btnActualizar").value;
-    
+// Llama a la funcion ActualizarComponente de la promesa
     ActualizarComponentes(objeto, id).then(()=>{
+// Carga los datos rescritos en la tabla
         CargarDatos();
     });
 }
@@ -266,18 +283,20 @@ const Actualizar = ()=>{
 const Contraste = ()=>{
     document.body.classList.toggle("dark-mode");
 }
+
+
 var fuente = () => {
-    //En esta función se esta haciendo que al momento de apretar el boton fuente 
-    //cambie el tamaño de fuente a lo que se haya aplicado la clase en el HTML
+//En esta función se esta haciendo que al momento de apretar el boton fuente 
+//cambie el tamaño de fuente a lo que se haya aplicado la clase en el HTML
     let btn = document.getElementById('btnFuente')
     
     if(btn.value == '0'){
         let elements = document.getElementsByClassName("small-letras")
-        //Se guarda el largo del elemento en una variable
+//Se guarda el largo del elemento en una variable
         const largo = elements.length;
         for (let i = 0; i < largo; i++){
             const element = elements[0]
-            //Se reemplaza del elemento la clase small-letras por medium-letras
+//Se reemplaza del elemento la clase small-letras por medium-letras
             element.classList.replace('small-letras','medium-letras')
         }
         btn.value = '1';
@@ -288,7 +307,7 @@ var fuente = () => {
         const largo = elements.length;
         for (let i = 0; i < largo; i++){
             const element = elements[0]
-            //Se reemplaza del elemento la clase medium-letras por large-letras
+//Se reemplaza del elemento la clase medium-letras por large-letras
             element.classList.replace('medium-letras','large-letras')
         }
         btn.value = "2";
@@ -299,7 +318,7 @@ var fuente = () => {
         const largo = elements.length;
         for (let i = 0; i < largo; i++){
             const element = elements[0]
-            //Se reemplaza del elemento la clase large-letras por small-letras
+//Se reemplaza del elemento la clase large-letras por small-letras
             element.classList.replace('large-letras','small-letras')
         }
         btn.value = "0"

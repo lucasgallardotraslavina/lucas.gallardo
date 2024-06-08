@@ -1,7 +1,7 @@
 import {collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import {db} from "./firebase.js"
 
-// Función para registrar componentes en Firebase
+// Función para registrar componentes en Firebase y ejecuta unos alert en caso de registra o que haya algun error
 export const RegistrarComponentes = async(componentes)=>{
     try{
     const docRef = await addDoc(collection(db,"componentes"),componentes)
@@ -23,7 +23,7 @@ export const ObtenerComponentes = async()=>{
     return listado
 };
 
-// Función para actualizar componentes en Firebase
+// Función para actualizar componentes en Firebase y ejecuta unos alert en caso de actualizar o que haya algun error
 export const ActualizarComponentes = async(objeto, id)=>{
     try{
     const ref = doc(db,"componentes", id);
@@ -38,5 +38,6 @@ export const ActualizarComponentes = async(objeto, id)=>{
 export const EliminarComponentes = async(id)=>{
     const ref = doc(db,"componentes", id);
     await deleteDoc(ref);
+// muestra un alert que confirma la usuario que se elimino
     alert("se elimio correctamente")
 }
