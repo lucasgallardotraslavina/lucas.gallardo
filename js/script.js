@@ -4,6 +4,7 @@ window.addEventListener("load",()=>{
     document.getElementById("btnIngresar").addEventListener("click", Registrar); 
     document.getElementById("btnActualizar").addEventListener("click", Actualizar);
     CargarDatos();
+    document.getElementById("Contraste").addEventListener("click",Contraste)
 })
 
 //================================================================
@@ -101,8 +102,8 @@ const Registrar = ()=>{
         alert("algo ocurrio");
         alert(r);
     });
-}
 
+}
 //================================================================
 //=============TERMINO DE LA FUNCION REGISTRAR====================
 //================================================================
@@ -279,3 +280,7 @@ const Actualizar = ()=>{
 //================================================================
 //=============TERMINO DE LA FUNCION Actualizar ==================
 //================================================================
+
+const Contraste = ()=>{
+    document.body.classList.toggle("dark-mode");
+}
