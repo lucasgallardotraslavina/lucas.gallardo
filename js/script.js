@@ -6,7 +6,6 @@ window.addEventListener("load",()=>{
     CargarDatos();
 })
 
-
 //================================================================
 //========================FUNCION REGISTRAR=======================
 //================================================================
@@ -18,7 +17,8 @@ const Registrar = ()=>{
     let EFuente = document.getElementById("Fuente");
     let EGabinete = document.getElementById("Gabinete");
 
-//=========================================================
+//===================RADIO=================================
+
     let ERam;
 
     if(document.getElementById("Ram1").checked){
@@ -35,7 +35,8 @@ const Registrar = ()=>{
         alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }
 
-//=========================================================
+//===================RADIO=================================
+
     let EGrafica;
 
     if(document.getElementById("Grafica1").checked){
@@ -48,7 +49,9 @@ const Registrar = ()=>{
         EGrafica = "RTX";
         alert("Eligio el modelo de Grafica: "+EGrafica)
     }
-//=========================================================
+
+//===================CHECK BOX=============================
+
     let EAlmacenamiento;
 
     if(document.getElementById("Almacenamiento1").checked){
@@ -64,12 +67,11 @@ const Registrar = ()=>{
         EAlmacenamiento = 2000;
         alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }
+
 //=========================================================
 
     let EVentiladores = document.getElementById("Ventiladores");
     
-
-
 
     let VCodigo = ECodigo.value;
     let VPlaca = EPlaca.value;
@@ -100,6 +102,7 @@ const Registrar = ()=>{
         alert(r);
     });
 }
+
 //================================================================
 //=============TERMINO DE LA FUNCION REGISTRAR====================
 //================================================================
@@ -107,6 +110,7 @@ const Registrar = ()=>{
 //================================================================
 //=====================FUNCION CARGAR DATOS=======================
 //================================================================
+
 const CargarDatos = ()=>{
     ObtenerComponentes().then((componentes)=>{
         let estructura = "";
@@ -138,7 +142,8 @@ const CargarDatos = ()=>{
                 let EGabinete = document.getElementById("Gabinete");
 
                 let ERam = document.getElementById("Ram");
-                let EGrafica = document.getElementById("Grafica");
+
+                let EGrafica = document.getElementById("Grafica")
                 let EAlmacenamiento = document.getElementById("Almacenamiento");
 
                 let Eventiladores = document.getElementById("Ventiladores")
@@ -169,8 +174,8 @@ const CargarDatos = ()=>{
             })
         })
     });
-
 }
+
 //================================================================
 //=============TERMINO DE LAFUNCION CARGAR DATOS==================
 //================================================================
@@ -186,7 +191,9 @@ const Actualizar = ()=>{
     let EFuente = document.getElementById("Fuente");
     let EGabinete = document.getElementById("Gabinete");
 
-    //=========================================================
+
+//===================RADIO=================================
+
     let ERam
 
     if(document.getElementById("Ram1").checked){
@@ -203,7 +210,8 @@ const Actualizar = ()=>{
         alert("Eligio el modulo con: "+ERam+"GB DE RAM")
     }
 
-//=========================================================
+//===================RADIO=================================
+
     let EGrafica
 
     if(document.getElementById("Grafica1").checked){
@@ -216,7 +224,9 @@ const Actualizar = ()=>{
         EGrafica = "RTX";
         alert("Eligio el modelo de Grafica: "+EGrafica)
     }
-//=========================================================
+
+//===================check box=============================
+
     let EAlmacenamiento
 
     if(document.getElementById("Almacenamiento1").checked){
@@ -232,6 +242,7 @@ const Actualizar = ()=>{
         EAlmacenamiento = 2000;
         alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
     }
+
 //=========================================================
 
     let EVentiladores = document.getElementById("Ventiladores");
@@ -264,3 +275,7 @@ const Actualizar = ()=>{
         CargarDatos();
     });
 }
+
+//================================================================
+//=============TERMINO DE LA FUNCION Actualizar ==================
+//================================================================
