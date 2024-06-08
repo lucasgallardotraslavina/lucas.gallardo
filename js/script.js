@@ -12,6 +12,7 @@ window.addEventListener("load",()=>{
 //================================================================
 
 const Registrar = ()=>{
+// Obtiene los valores de los elementos
     let ECodigo = document.getElementById("Codigo");
     let EPlaca = document.getElementById("Placa");
     let EProcesador = document.getElementById("Procesador");
@@ -21,7 +22,7 @@ const Registrar = ()=>{
 //===================RADIO=================================
 
     let ERam;
-
+// Verifica qué opción de RAM está seleccionada
     if(document.getElementById("Ram1").checked){
         ERam = 4;
         alert("Eligio el modulo con: "+ERam+"GB DE RAM")
@@ -39,7 +40,7 @@ const Registrar = ()=>{
 //===================RADIO=================================
 
     let EGrafica;
-
+// Verifica qué opción de gráfica está seleccionada
     if(document.getElementById("Grafica1").checked){
         EGrafica = "GT";
         alert("Eligio el modelo de Grafica: "+EGrafica)
@@ -54,7 +55,7 @@ const Registrar = ()=>{
 //===================CHECK BOX=============================
 
     let EAlmacenamiento;
-
+// Verifica qué opción de almacenamiento está seleccionada
     if(document.getElementById("Almacenamiento1").checked){
         EAlmacenamiento = 250;
         alert("Eligio el Almacenamiento con la capacidad: "+EAlmacenamiento+"GB")
@@ -73,7 +74,7 @@ const Registrar = ()=>{
 
     let EVentiladores = document.getElementById("Ventiladores");
     
-
+// Asigna los valores obtenidos a variables
     let VCodigo = ECodigo.value;
     let VPlaca = EPlaca.value;
     let VProcesador = EProcesador.value;
@@ -83,7 +84,7 @@ const Registrar = ()=>{
     let VGrafica = EGrafica
     let VAlmacenamienti = EAlmacenamiento
     let VVentiladores = EVentiladores.value;
-
+// Crea un objeto con los valores obtenidos
     const objeto = {
         Codigo:VCodigo,
         Placa:VPlaca,
@@ -95,9 +96,11 @@ const Registrar = ()=>{
         Almacenamiento:VAlmacenamienti,
         Ventiladores:VVentiladores
     }
-    
+// Llama a la función RegistrarComponentes de la ppromesa
     RegistrarComponentes(objeto).then (()=>{
         alert("Registrado con exito");
+// Vuelve a cargar los datos después de registrar
+        CargarDatos();
     }).catch((r)=>{
         alert("algo ocurrio");
         alert(r);
@@ -115,6 +118,7 @@ const Registrar = ()=>{
 const CargarDatos = ()=>{
     ObtenerComponentes().then((componentes)=>{
         let estructura = "";
+// Crea una tabla con los compoennetes
         componentes.forEach(componentes => {
             estructura += "<tr>";
             estructura += "<td>" + componentes.Codigo + "</td>";
@@ -132,7 +136,7 @@ const CargarDatos = ()=>{
         });
         document.getElementById("TablaDatos").innerHTML = estructura;
         componentes.forEach((componentes)=>{
-
+// Asigna eventos a los botones de actualizar y eliminar
             let botonUPD = document.getElementById(componentes.id);
 
             botonUPD.addEventListener("click",()=>{
@@ -149,7 +153,7 @@ const CargarDatos = ()=>{
 
                 let Eventiladores = document.getElementById("Ventiladores")
 
-
+ // Asigna los valores de los componentes seleccionados a los campos del formulario
                 ECodigo.value = componentes.Codigo;
                 EPlaca.value = componentes.Placa;
                 EProcesador.value = componentes.Procesador;
@@ -169,6 +173,7 @@ const CargarDatos = ()=>{
                 if(confirm("seguro de eliminar:"+componentes.Codigo)){
                     EliminarComponentes(componentes.id).then(()=>{
                         alert("se elimino los componentes con el codigo:"+componentes.Codigo);
+// Vuelve a cargar los datos después de eliminar
                         CargarDatos();
                     })
                 }
@@ -281,6 +286,7 @@ const Actualizar = ()=>{
 //=============TERMINO DE LA FUNCION Actualizar ==================
 //================================================================
 
+// Alterna el modo oscuro en la página
 const Contraste = ()=>{
     document.body.classList.toggle("dark-mode");
 }
