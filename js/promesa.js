@@ -28,7 +28,7 @@ export const ActualizarComponentes = async(objeto, id)=>{
     try{
     const ref = doc(db,"componentes", id);
     await updateDoc(ref,objeto)
-    alert("se actualizao")
+    alert("se actualizo correctamente")
     }catch(err){
         alert("debe rellenar todos los campos")
     }

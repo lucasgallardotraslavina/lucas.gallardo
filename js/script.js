@@ -6,6 +6,7 @@ window.addEventListener("load",()=>{
     CargarDatos();
     document.getElementById("Contraste").addEventListener("click",Contraste)
     document.getElementById("btnFuente").addEventListener("click",fuente)
+    document.getElementById("btnIngresar").addEventListener("click", validar); 
 })
 
 //================================================================
@@ -98,6 +99,35 @@ const Registrar = ()=>{
     });
 
 }
+
+//valida los campos que esten vacio al momento de apretar el boton
+function validar(){
+    validarVacio('Codigo');
+    validarVacio('Placa');
+    validarVacio('Procesador');
+    validarVacio('Fuente');
+    validarVacio('Gabinete');
+    validarVacio('Ram');
+    validarVacio('Grafica');
+    validarVacio('Almacenamiento');
+    validarVacio('Ventiladores');
+}
+
+function validarVacio(idCampo){
+    let iNombre = document.getElementById(idCampo);
+    console.log(iNombre);
+    let nombre = iNombre.value;
+
+    
+    if(nombre.trim()==""){
+        iNombre.style.borderColor = "red";
+        let pNombre = document.getElementById("p"+idCampo);
+        pNombre.style.display = "block";
+    }
+}
+
+
+
 //================================================================
 //=============TERMINO DE LA FUNCION REGISTRAR====================
 //================================================================
@@ -108,10 +138,10 @@ const Registrar = ()=>{
 
 
 // Funcion encargada de tomar los datos e introducirlos en una tabla ademas de actualizar y eliminar los datos de dicha tabla
-const CargarDatos = () => {
+function CargarDatos() {
     ObtenerComponentes().then((componentes) => {
         let estructura = "";
-// Crea una tabla con los componentes
+        // Crea una tabla con los componentes
         componentes.forEach(componentes => {
             estructura += "<tr>";
             estructura += "<td>" + componentes.Codigo + "</td>";
@@ -129,7 +159,7 @@ const CargarDatos = () => {
         });
         document.getElementById("TablaDatos").innerHTML = estructura;
         componentes.forEach((componentes) => {
-// Asigna eventos a los botones de actualizar y eliminar
+            // Asigna eventos a los botones de actualizar y eliminar
             let botonUPD = document.getElementById(componentes.id);
 
             botonUPD.addEventListener("click", () => {
@@ -139,14 +169,14 @@ const CargarDatos = () => {
                 let EFuente = document.getElementById("Fuente");
                 let EGabinete = document.getElementById("Gabinete");
 
-// Asigna los valores de los componentes seleccionados a los campos del formulario
+                // Asigna los valores de los componentes seleccionados a los campos del formulario
                 ECodigo.value = componentes.Codigo;
                 EPlaca.value = componentes.Placa;
                 EProcesador.value = componentes.Procesador;
                 EFuente.value = componentes.Fuente;
                 EGabinete.value = componentes.Gabinete;
 
- // Actualiza los botones de radio
+                // Actualiza los botones de radio
                 document.getElementById("Ram1").checked = componentes.Ram == 4;
                 document.getElementById("Ram2").checked = componentes.Ram == 8;
                 document.getElementById("Ram3").checked = componentes.Ram == 16;
@@ -156,7 +186,7 @@ const CargarDatos = () => {
                 document.getElementById("Grafica2").checked = componentes.Grafica == "GTX";
                 document.getElementById("Grafica3").checked = componentes.Grafica == "RTX";
 
-// Actualiza las casillas de verificación
+                // Actualiza las casillas de verificación
                 document.getElementById("Almacenamiento1").checked = componentes.Almacenamiento == 250;
                 document.getElementById("Almacenamiento2").checked = componentes.Almacenamiento == 500;
                 document.getElementById("Almacenamiento3").checked = componentes.Almacenamiento == 1000;
@@ -168,18 +198,18 @@ const CargarDatos = () => {
                 document.getElementById("btnActualizar").value = componentes.id;
             });
 
-// Asigna eventos al boton eliminar
+            // Asigna eventos al boton eliminar
             let botonDEL = document.getElementById("DEL" + componentes.id);
             botonDEL.addEventListener("click", () => {
                 if (confirm("seguro de eliminar:" + componentes.Codigo)) {
-// Llama a la función eliminarcomponente de la promesa
+                    // Llama a la función eliminarcomponente de la promesa
                     EliminarComponentes(componentes.id).then(() => {
-// Vuelve a cargar los datos después de eliminar
+                        // Vuelve a cargar los datos después de eliminar
                         CargarDatos();
-                    })
+                    });
                 }
-            })
-        })
+            });
+        });
     });
 }
 

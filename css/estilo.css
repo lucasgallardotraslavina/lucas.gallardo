@@ -94,3 +94,7 @@ p{
     margin-left: 900px;
     margin-right: 1px;
 }
+p.noDisplay{
+    display: none;
+    color: red;
+}
